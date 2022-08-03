@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Clock </title>
+</head>
+    <body>
+        <div class="clock">
+            <div class="clock-face">
+              <div class="hand hour-hand"></div>
+              <div class="hand min-hand"></div>
+              <div class="hand second-hand"></div>
+            </div>
+          </div>
+      
+      
+        <style>
+          html {
+            background: #1f8ad1c5 url(https://unsplash.it/1500/1000?image=881&blur=5);
+            background-size: cover;
+            font-family: 'helvetica neue';
+            text-align: center;
+            font-size: 10px;
+          }
+      
+          body {
+            margin: 0;
+            font-size: 2rem;
+            display: flex;
+            flex: 1;
+            min-height: 100vh;
+            align-items: center;
+          }
+      
+          .clock {
+            width: 30rem;
+            height: 30rem;
+            border: 20px solid white;
+            border-radius: 50%;
+            margin: 50px auto;
+            position: relative;
+            padding: 2rem;
+            box-shadow:
+              0 0 0 4px rgba(0,0,0,0.1),
+              inset 0 0 0 3px #EFEFEF,
+              inset 0 0 10px black,
+              0 0 10px rgba(0,0,0,0.2);
+          }
+      
+          .clock-face {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform: translateY(-3px); /* account for the height of the clock hands */
+          }
+      
+          .hand {
+            width: 50%;
+            height: 6px;
+            background: black;
+            position: absolute;
+            top: 50%;
+            transform: rotate(90deg);
+            transform-origin: 100%;
+            transition: all 0.5s;
+            transition-timing-function: cubic-bezier(0.39, 1.76, 0.89, 0.95);
+          }
+
+        .hour-hand {
+            width: 35%;
+            left: 45px;
+        }
+
+        .no-transition {
+            transition: none;
+        }
+      
+        </style>
+
+        <!-- Start Javascirpt  -->
+        <script>
+            function getDate() {
+                const date = new Date();
+                
+                // hours pointer
+                const hourPointer = document.querySelector('.hour-hand');
+                const getHourRotation = ((date.getHours() / 12) * 360) + 90 ;
+                hourPointer.style.transform = `rotate(${getHourRotation}deg)`;
+                
+                if(getHourRotation === 90) {
+                    hourPointer.classList.add('no-transition');
+                }  
+                if(getHourRotation === 96) {
+                    hourPointer.classList.remove('no-transition');
+                }
+
+                // minutes pointer
+                const minutesPointer = document.querySelector('.min-hand');
+                const getMinutesRotation = ((date.getMinutes() / 60) * 360) + 90;
+                minutesPointer.style.transform = `rotate(${getMinutesRotation}deg)`;
+                
+                if(getMinutesRotation === 90) {
+                    minutesPointer.classList.add('no-transition');
+                }
+                
+                if(getMinutesRotation === 96) {
+                    minutesPointer.classList.remove('no-transition');
+                }
+
+                // seconds pointer
+                const secondPointer = document.querySelector('.second-hand');
+                const getSecondsRotation = ((date.getSeconds() / 60) * 360) + 90;
+                secondPointer.style.transform = `rotate(${getSecondsRotation}deg)`;
+
+                if(getSecondsRotation === 90) {
+                    secondPointer.classList.add('no-transition');
+                }
+
+                if(getSecondsRotation === 96) {
+                    secondPointer.classList.remove('no-transition');
+                }
+            }
+
+            setInterval(getDate, 1000);
+      
+        </script>
+    </body>
+</html>

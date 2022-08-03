@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Speed Scrubber</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
+    <div class="speed">
+      <div class="speed-bar">1×</div>
+    </div>
+  </div>
+
+<script>
+    const speed = document.querySelector('.speed');
+    const bar = speed.querySelector('.speed-bar');
+    const video = document.querySelector('.flex');
+    let isDown = false;
+    let isIn = false;
+
+    function handleSpeed(e) {
+        if(!isDown) return;
+        e.preventDefault();
+
+        const Y = e.pageY - this.offsetTop;
+        const percent = Y / speed.offsetHeight;
+        const min = 0.4;
+        const max = 4;
+        const moveHeight = Math.round(percent * 100) + '%';
+        const playBackRate = percent * (max - min) + min;
+
+        bar.style.height = moveHeight;
+        bar.textContent = playBackRate.toFixed(1) + 'x';
+        video.playbackRate = playBackRate;
+    }
+
+    speed.addEventListener('mousemove', handleSpeed );
+    
+    speed.addEventListener('mousedown', () => {
+        if(!isIn) return;
+        isDown = true;
+    });
+    speed.addEventListener('mouseenter', () => {
+        isIn = true;
+    });
+    speed.addEventListener('mouseleave', () => {
+        isIn = false;
+    });
+    speed.addEventListener('mouseup', () => isDown = false );
+    
+    
+</script>
+</body>
+</html>
