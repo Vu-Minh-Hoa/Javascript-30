@@ -18,12 +18,13 @@
     const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
     const cities = [];
+    let weather = {};
+
+    const API = 'https://api.openweathermap.org/data/2.5/weather?lat=21&lon=106&appid=1693e691cc68920dd6ebf412a51f9553';
 
     fetch(endpoint)
         .then(rawData => rawData.json())
         .then(data => cities.push(...data));
-
-        
 
     function findMatch(wordToMatch, cities) {
         return cities.filter(place => {
@@ -36,7 +37,7 @@
     function numberWithComma(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
-    console.log(findMatch)
+
     function displayMatch() {
         const matchArray = findMatch(this.value, cities);
         if(this.value === '') {

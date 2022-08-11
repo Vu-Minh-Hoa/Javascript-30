@@ -1,4 +1,4 @@
-let countDown;
+let countDown = 0;
 const displayTime = document.querySelector('.display__time-left');
 const displayEndTime = document.querySelector('.display__end-time');
 const buttons = document.querySelectorAll('[data-time]');
@@ -36,7 +36,6 @@ function displayTimeLeft(seconds) {
                 remainingSeconds}`; 
     document.title = display;
     displayTime.textContent = display;
-    // console.log(currentTime);
 };
 
 function displayTimeEnd(timeStamp) {

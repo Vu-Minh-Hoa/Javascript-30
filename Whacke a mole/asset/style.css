@@ -23,6 +23,23 @@ h1 {
     margin-bottom: 0;
 }
 
+.start-btn {
+    margin: 30px auto;
+    display: block;
+    width: 100px;
+    height: 40px;
+    font-size: 14px;
+    border: none;
+    background-color: lightsalmon;
+    border-radius: 20px;
+}
+
+.start-btn:hover {
+    background-color: rgb(255, 179, 149);
+    cursor: pointer;
+}
+
+
 .score {
     background: rgba(255, 255, 255, 0.2);
     padding: 0 3rem;
